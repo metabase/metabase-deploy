@@ -27,4 +27,5 @@ EOF
 git add .
 git commit -m "Deploy $TAG"
 git tag "$TAG"
+git push
 git push --tags origin master
