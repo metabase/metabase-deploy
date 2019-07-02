@@ -113,5 +113,6 @@ if [ "$JAVA_TIMEZONE"]; then
     echo "  -> Timezone setting detected: $JAVA_TIMEZONE"
     JAVA_OPTS+=" -Duser.timezone=$JAVA_TIMEZONE"
 fi
+JAVA_OPTS+=" -XX:+ExitOnOutOfMemoryError"
 
 exec java $JAVA_OPTS -jar ./target/uberjar/metabase.jar
