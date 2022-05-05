@@ -10,9 +10,9 @@
   <Loggers>
     <Logger name="metabase" level="INFO"/>
     <Logger name="metabase-enterprise" level="INFO"/>
-    <Logger name="metabase.plugins" level="DEBUG"/>
-    <Logger name="metabase.server.middleware" level="DEBUG"/>
-    <Logger name="metabase.query-processor.async" level="DEBUG"/>
+    <Logger name="metabase.plugins" level="INFO"/>
+    <Logger name="metabase.server.middleware" level="INFO"/>
+    <Logger name="metabase.query-processor.async" level="INFO"/>
     <Logger name="com.mchange" level="ERROR"/>
     <Logger name="liquibase" level="ERROR"/>
 
