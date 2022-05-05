@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <Console name="STDOUT" target="SYSTEM_OUT" follow="true">
+      <JsonLayout complete="false" compact="false">
+        <KeyValuePair key="metabase_logger" value="json" />
+        <replace regex=":basic-auth \\[.*\\]" replacement=":basic-auth [redacted]"/>
+      </JsonLayout>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Logger name="metabase" level="INFO"/>
+    <Logger name="metabase-enterprise" level="INFO"/>
+    <Logger name="metabase.plugins" level="DEBUG"/>
+    <Logger name="metabase.server.middleware" level="DEBUG"/>
+    <Logger name="metabase.query-processor.async" level="DEBUG"/>
+    <Logger name="com.mchange" level="ERROR"/>
+    <Logger name="liquibase" level="ERROR"/>
+
+    <Root level="WARN">
+        <AppenderRef ref="STDOUT"/>
+    </Root>
+  </Loggers>
+</Configuration>
