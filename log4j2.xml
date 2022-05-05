@@ -2,9 +2,8 @@
 <Configuration>
   <Appenders>
     <Console name="STDOUT" target="SYSTEM_OUT" follow="true">
-      <JsonLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true">
+      <JsonLayout compact="true" eventEol="true" properties="true" stacktraceAsString="true" includeStacktrace="false">
         <KeyValuePair key="metabase_logger" value="json" />
-        <replace regex=":basic-auth \\[.*\\]" replacement=":basic-auth [redacted]"/>
       </JsonLayout>
     </Console>
   </Appenders>
