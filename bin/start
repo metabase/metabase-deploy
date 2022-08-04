@@ -94,7 +94,7 @@ if [ -n "$HEROKU" ]; then
     echo "  -> Heroku detected"
     # Set a few other options to minimize memory usage as much as possible.
     JAVA_OPTS+=" -XX:+UnlockExperimentalVMOptions"
-    JAVA_OPTS+=" -XX:+UseCGroupMemoryLimitForHeap" # Tell the JVM to use container info to set heap limit -- see https://devcenter.heroku.com/articles/java-memory-issues#configuring-java-to-run-in-a-container
+    JAVA_OPTS+=" -XX:+UseContainerSupport"         # Tell the JVM to use container info to set heap limit -- see https://devcenter.heroku.com/articles/java-memory-issues#configuring-java-to-run-in-a-container
     JAVA_OPTS+=" -XX:-UseGCOverheadLimit"          # Disable limit to amount of time spent in GC. Better slow than not working at all
     JAVA_OPTS+=" -XX:+UseCompressedOops"           # Use 32-bit pointers. Reduces memory usage
     JAVA_OPTS+=" -XX:+UseCompressedClassPointers"  # Same as above. See also http://blog.leneghan.com/2012/03/reducing-java-memory-usage-and-garbage.html
