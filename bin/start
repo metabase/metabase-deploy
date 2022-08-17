@@ -66,38 +66,15 @@ if [ "$SPARKPOST_SMTP_USERNAME" ]; then
     export MB_EMAIL_SMTP_PASSWORD="$SPARKPOST_SMTP_PASSWORD"
 fi
 
-# AWS Elastic Beanstalk w/ RDS
-if [ ! -z "$RDS_HOSTNAME" ]; then
-    # EEK: this is a bit fragile.  if user picks a non-standard port for their db we are screwed :(
-    if [ "$RDS_PORT" == "3306" ]; then
-        export MB_DB_TYPE=mysql
-    else
-        export MB_DB_TYPE=postgres
-    fi
-
-    export MB_DB_DBNAME=$RDS_DB_NAME
-    export MB_DB_USER=$RDS_USERNAME
-    export MB_DB_PASS=$RDS_PASSWORD
-    export MB_DB_HOST=$RDS_HOSTNAME
-    export MB_DB_PORT=$RDS_PORT
-fi
-
 # Determine whether we're on Heroku on a free, hobby, 1x dyno or 2x dyno
 #
 # We set $HEROKU in the Procfile, so we know we're on Heroku when started from the
 # Procfile.
-#
-# We need to override the $JAVA_OPTS and give it a slightly lower memory limit
-# because Heroku tends to think we can use more memory than we actually can.
 
 if [ -n "$HEROKU" ]; then
     echo "  -> Heroku detected"
-    # Set a few other options to minimize memory usage as much as possible.
-    JAVA_OPTS+=" -XX:+UnlockExperimentalVMOptions"
-    JAVA_OPTS+=" -XX:+UseCGroupMemoryLimitForHeap" # Tell the JVM to use container info to set heap limit -- see https://devcenter.heroku.com/articles/java-memory-issues#configuring-java-to-run-in-a-container
+    JAVA_OPTS+=" -XX:+UseContainerSupport"
     JAVA_OPTS+=" -XX:-UseGCOverheadLimit"          # Disable limit to amount of time spent in GC. Better slow than not working at all
-    JAVA_OPTS+=" -XX:+UseCompressedOops"           # Use 32-bit pointers. Reduces memory usage
-    JAVA_OPTS+=" -XX:+UseCompressedClassPointers"  # Same as above. See also http://blog.leneghan.com/2012/03/reducing-java-memory-usage-and-garbage.html
     JAVA_OPTS+=" -Xverify:none"                    # Skip bytecode verification, the Heroku buildpack comes from us so it's already verified. Speed up launch slightly
     JAVA_OPTS+=" -XX:+UseG1GC"                     # G1GC seems to use slightly less memory in my testing...
     JAVA_OPTS+=" -XX:+UseStringDeduplication"      # Especially when used in combination with string deduplication
