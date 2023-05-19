@@ -1,3 +1,5 @@
+# NOTE: since the Heroku Buildpack is no longer maintained by Metabase, this will deploy an old insecure version of Metabase. We strongly encourage everyone to either deploy in Heroku via containers or fork this repository. Please see announcement https://www.metabase.com/releases/Metabase-0.45
+
 [![Metabase Logo](http://www.metabase.com/images/logo.svg)](http://www.metabase.com/)
 
 [Metabase](http://www.metabase.com/) is the easy, open source way for everyone in your company to ask questions and learn from data.
