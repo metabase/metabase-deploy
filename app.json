@@ -21,7 +21,7 @@
       "url": "heroku/jvm"
     },
     {
-      "url": "https://github.com/metabase/metabase-buildpack"
+      "url": "https://github.com/CareAcademy/metabase-buildpack"
     }
   ]
 }
